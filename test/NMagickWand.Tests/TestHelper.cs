@@ -49,15 +49,7 @@ namespace NMagickWand.Tests
                 MagickWandApi.MagickWandGenesis();
             }
             
-            var wand = MagickWandApi.NewMagickWand();
-            var res = MagickWandApi.MagickReadImage(wand, TestHelper.TEST_FILE);
-            
-            if (res == MagickBooleanType.False)
-            {
-                throw new InvalidOperationException("Unable to open test image");
-            }
-            
-            return wand;
+            return TestHelper.GetWandForFile(TestHelper.TEST_FILE);
         }
         
         
@@ -82,6 +74,20 @@ namespace NMagickWand.Tests
         public static string GetTempFilename()
         {
             return Guid.NewGuid().ToString() + Path.GetExtension(TEST_FILE);
+        }
+        
+        
+        public static IntPtr GetWandForFile(string filename)
+        {
+            var wand = MagickWandApi.NewMagickWand();
+            var res = MagickWandApi.MagickReadImage(wand, filename);
+            
+            if (res == MagickBooleanType.False)
+            {
+                throw new InvalidOperationException("Unable to open image: " + filename);
+            }
+            
+            return wand;
         }
     }
 }

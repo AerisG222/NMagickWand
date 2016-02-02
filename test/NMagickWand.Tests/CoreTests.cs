@@ -91,7 +91,10 @@ namespace NMagickWand.Tests
             var wand = TestHelper.StartTestWithImage();
             var tmp = TestHelper.GetTempFilename();
             
-            var res = MagickWandApi.MagickScaleImage(wand, (UIntPtr)10, (UIntPtr)10);
+            var height = new UIntPtr(100);
+            var width = new UIntPtr(50);
+            
+            var res = MagickWandApi.MagickScaleImage(wand, width, height);
             
             Assert.True(res == MagickBooleanType.True, "Scaling should report success");
             
@@ -106,6 +109,13 @@ namespace NMagickWand.Tests
             var fiOrig = new FileInfo(TestHelper.TEST_FILE);
             
             Assert.True(fiOrig.Length > fi.Length, "The original, larger, image should be bigger");
+            
+            var newWand = TestHelper.GetWandForFile(tmp);
+            
+            Assert.True(MagickWandApi.MagickGetImageHeight(wand) == height, "Height should match what it was scaled to");
+            Assert.True(MagickWandApi.MagickGetImageWidth(wand) == width, "Width should match what it was scaled to");
+            
+            MagickWandApi.DestroyMagickWand(newWand);
             
             TestHelper.EndTestWithImage(wand, fi);
         }
