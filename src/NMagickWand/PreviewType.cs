@@ -1,0 +1,36 @@
+namespace NMagickWand
+{
+    public enum PreviewType
+    {
+        UndefinedPreview,
+        RotatePreview,
+        ShearPreview,
+        RollPreview,
+        HuePreview,
+        SaturationPreview,
+        BrightnessPreview,
+        GammaPreview,
+        SpiffPreview,
+        DullPreview,
+        GrayscalePreview,
+        QuantizePreview,
+        DespecklePreview,
+        ReduceNoisePreview,
+        AddNoisePreview,
+        SharpenPreview,
+        BlurPreview,
+        ThresholdPreview,
+        EdgeDetectPreview,
+        SpreadPreview,
+        SolarizePreview,
+        ShadePreview,
+        RaisePreview,
+        SegmentPreview,
+        SwirlPreview,
+        ImplodePreview,
+        WavePreview,
+        OilPaintPreview,
+        CharcoalDrawingPreview,
+        JPEGPreview
+    }
+}

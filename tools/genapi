@@ -1,0 +1,87 @@
+#!/bin/bash
+
+# this tool is intended to automate creating bindings to imagemagick.
+# in the future, this might be expanded to also work for graphicsmagick as they are highly
+# similar apis and could offer differences in functionality/performance for a given workload
+
+# api docs for imagemagick:
+# http://www.imagemagick.org/script/magick-wand.php
+
+SRC='../src/NMagickWand/MagickWandApi.cs';
+LIB=`ldconfig -p | grep libMagickWand | awk -F '=> ' '{print $2}' | grep -e .*.so$`;
+INC=`ls /usr/include/ImageMagick-6/wand/MagickWand.h`;
+SYS=`uname -srvmpio`;
+DT=`date`;
+BAR='// -------------------------------------------------------------------';
+
+if [ "${LIB}" == '' ] || [ "${INC}" == '' ]; then
+    echo 'libMagickWand does not appear to be installed!  Please try the following:';
+    echo '';
+    echo 'on Fedora systems:';
+    echo '    sudo dnf install ImageMagick-devel';
+    echo '';
+    echo 'on Ubuntu systems:';
+    echo '    sudo apt-get install libmagickwand-dev';
+    echo '';
+    echo 'also try the following resource for other platforms:';
+    echo '    http://docs.wand-py.org/en/0.2.4/guide/install.html';
+    
+    exit 2;
+fi;
+
+function out() {
+    echo "$1" >> ${SRC};
+}
+
+function process_externs() {
+    if [ "${1##*/}" == "deprecate.h" ]; then
+        return;
+    fi
+    
+    out "        ${BAR}";
+    out "        // ${1##*/}";
+    out "        ${BAR}";
+    awk -f "externs.awk" "${1}" >> "${SRC}";
+    out '';
+}
+
+function process_includes() {
+    # get the referenced .h files
+    HS=`grep -iR '#include \"wand/' /usr/include/ImageMagick-6/wand/MagickWand.h | awk -F '"wand/' '{print$2}' | awk -F '"' '{print$1}' | sort`;
+    
+    for FILE in ${HS}
+    do
+        process_externs "${INC%/*}/${FILE}";
+    done
+}
+
+function process() {
+    process_externs "${INC}";
+    process_includes "${INC}";
+}
+
+if [ -e "${SRC}" ]; then
+    rm "${SRC}";
+fi
+
+out "${BAR}";
+out "// generated from system: ${SYS}";
+out "// generated from library: ${LIB}";
+out "// generated from include: ${INC}";
+out "// generated on: ${DT}";
+out "${BAR}";
+out 'using System;';
+out 'using System.Runtime.InteropServices;';
+out '';
+out '';
+out 'namespace NMagickWand';
+out '{';
+out '    public static class MagickWandApi';
+out '    {';
+out '        const string LIB = "libMagickWand";';
+out ''
+
+process;
+
+out '    }';
+out '}';
