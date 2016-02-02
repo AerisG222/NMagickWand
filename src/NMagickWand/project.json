@@ -1,10 +1,10 @@
 {
     "title": "NMagickWand",
     "authors": [ "Mike Morano <mmorano@mikeandwan.us>" ],
-    "licenseUrl": "https://github.com/AerisG222/NMagick/LICENSE.md",
-    "projectUrl": "https://github.com/AerisG222/NMagick",
-    "summary": "Thin wrapper around ImageMagick's MagickWand API",
-    "description": ".Net wrapper around ImageMagick",
+    "licenseUrl": "https://github.com/AerisG222/NMagickWand/blob/master/LICENSE.md",
+    "projectUrl": "https://github.com/AerisG222/NMagickWand",
+    "summary": "Exposing the power of ImageMagick to .Net",
+    "description": "Exposing the power of ImageMagick to .Net",
     "tags": [ "graphics", "image", "ImageMagick", "MagickWand" ],
     "version": "0.1.0",
     "dependencies": {
