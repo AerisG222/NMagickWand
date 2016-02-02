@@ -119,5 +119,24 @@ namespace NMagickWand.Tests
             
             TestHelper.EndTestWithImage(wand, fi);
         }
+        
+        
+        [Fact]
+        public void GetPixelColor()
+        {
+            var wand = TestHelper.StartTestWithImage();
+            var pixelWand = MagickWandApi.NewPixelWand();
+            
+            Assert.True(pixelWand != null);
+            Assert.True(pixelWand != IntPtr.Zero);
+            
+            var res = MagickWandApi.MagickGetImagePixelColor(wand, (IntPtr)1, (IntPtr)1, pixelWand);
+            
+            Assert.True(res == MagickBooleanType.True, "Did not get pixel info");
+            Assert.True(!string.IsNullOrEmpty(MagickWandApi.PixelGetColorAsString(pixelWand)));
+            Assert.True(!string.IsNullOrEmpty(MagickWandApi.PixelGetColorAsNormalizedString(pixelWand)));
+            
+            TestHelper.EndTestWithImage(wand);
+        }
     }
 }
