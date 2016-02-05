@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Runtime.InteropServices;
 using Xunit;
 using NMagickWand;
 
@@ -133,10 +134,46 @@ namespace NMagickWand.Tests
             var res = MagickWandApi.MagickGetImagePixelColor(wand, (IntPtr)1, (IntPtr)1, pixelWand);
             
             Assert.True(res == MagickBooleanType.True, "Did not get pixel info");
-            Assert.True(!string.IsNullOrEmpty(MagickWandApi.PixelGetColorAsString(pixelWand)));
-            Assert.True(!string.IsNullOrEmpty(MagickWandApi.PixelGetColorAsNormalizedString(pixelWand)));
             
+            var color = MagickWandApi.GetMagickString(MagickWandApi.PixelGetColorAsString(pixelWand));
+            
+            Assert.True(!string.IsNullOrEmpty(color));
+            
+            color = MagickWandApi.GetMagickString(MagickWandApi.PixelGetColorAsNormalizedString(pixelWand));
+
+            Assert.True(!string.IsNullOrEmpty(color));
+
             TestHelper.EndTestWithImage(wand);
+        }
+        
+        
+        [Fact]
+        public void GetExifInfo()
+        {
+            UIntPtr count;
+            var wand = TestHelper.StartTestWithImage();
+            
+            var strArrayPtr = MagickWandApi.MagickGetImageProperties(wand, "*", out count);
+            var idxPtr = strArrayPtr;
+            
+            for (int i = 0; i < (int)count; i++)
+            {
+                idxPtr = IntPtr.Add(idxPtr, i * IntPtr.Size);
+                var strPtr = Marshal.ReadIntPtr(idxPtr);
+                var str = Marshal.PtrToStringAnsi(strPtr);
+                
+                // looks like the last property is a null string, so don't include that in the test
+                if(i < (int)count - 1)
+                {
+                    Assert.True(str != null, "property name should not be null");
+                }
+                
+                // free the string value
+                MagickWandApi.MagickRelinquishMemory(strPtr);
+            }
+            
+            // free the array
+            MagickWandApi.MagickRelinquishMemory(strArrayPtr);
         }
     }
 }

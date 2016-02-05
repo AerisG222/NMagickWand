@@ -7,7 +7,7 @@
 # api docs for imagemagick:
 # http://www.imagemagick.org/script/magick-wand.php
 
-SRC='../src/NMagickWand/MagickWandApi.cs';
+SRC='../src/NMagickWand/MagickWandApi_.cs';
 LIB=`ldconfig -p | grep libMagickWand | awk -F '=> ' '{print $2}' | grep -e .*.so$`;
 INC=`ls /usr/include/ImageMagick-6/wand/MagickWand.h`;
 SYS=`uname -srvmpio`;
@@ -76,7 +76,7 @@ out '';
 out '';
 out 'namespace NMagickWand';
 out '{';
-out '    public static class MagickWandApi';
+out '    public static partial class MagickWandApi';
 out '    {';
 out '        const string LIB = "libMagickWand";';
 out ''
