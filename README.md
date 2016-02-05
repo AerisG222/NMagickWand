@@ -12,7 +12,10 @@ not found working code that looks particularly compelling.
 - Install ImageMagick (currently targets v6)
 - Add a reference to NMagickWand in your project.json
 - Bring down the packages for your project via `dnu restore`
-`using NMagickWand;
+
+```csharp
+using NMagickWand;
+
 namespace Test
 {
     public class Example
@@ -29,7 +32,9 @@ namespace Test
             MagickWandApi.MagickWandTerminus();
         }
     }
-}`
+}
+```
+
 - View the tests for more examples
 
 ## Developing
