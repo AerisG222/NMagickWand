@@ -44,7 +44,7 @@ The first step of the process is to run `tools/genapi` - this
 currently runs in bash with awk.  While I've tested this only 
 on Linux, I hope it would run pretty cleanly elsewhere. 
 
-This tool will overwrite the src/NMagickWand/MagickWandApi.cs file
+This tool will overwrite the src/NMagickWand/MagickWandApi_.cs file
 based on how it parses the header files that come with the development
 ImageMagick package.
 
@@ -70,9 +70,8 @@ I hope to make many improvements to the library as time permits.
   benefits and performance characteristics 
   
 ## License
-NMagickWand is licensed under the MIT license, see LICENSE.md for more
-information.  For more information on the ImageMagick license permitting
-its use, please see LICENSE_ImageMagick.md.
+NMagickWand is licensed under the MIT license.  See LICENSE.md for more
+information.
 
 ## Reference
 - ImageMagick: http://imagemagick.org/
