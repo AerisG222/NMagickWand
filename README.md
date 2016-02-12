@@ -1,3 +1,6 @@
+[![NuGet](https://img.shields.io/nuget/dt/NMagickWand.svg)]()
+[![NuGet](https://img.shields.io/nuget/v/NMagickWand.svg)]()
+
 #NMagickWand
 
 A .Net library to expose the MagickWand API from ImageMagick.
