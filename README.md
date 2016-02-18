@@ -1,6 +1,7 @@
 [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/AerisG222/NMagickWand/blob/master/LICENSE.md)
 [![NuGet](https://img.shields.io/nuget/dt/NMagickWand.svg)](https://www.nuget.org/packages/NMagickWand/)
 [![NuGet](https://img.shields.io/nuget/v/NMagickWand.svg)](https://www.nuget.org/packages/NMagickWand/)
+[![Coverity Scan](https://img.shields.io/coverity/scan/7995.svg)](https://scan.coverity.com/projects/aerisg222-nmagickwand)
 
 #NMagickWand
 
