@@ -10,6 +10,7 @@ namespace NMagickWand.Tests
     public class CoreTests
     {
         [Fact]
+        [Trait("area", "core")]
         public void GenesisAndTerminus()
         {
             MagickWandApi.MagickWandGenesis();
@@ -23,6 +24,7 @@ namespace NMagickWand.Tests
         
         
         [Fact]
+        [Trait("area", "core")]
         public void CreateDestroyWand()
         {
             MagickWandApi.MagickWandGenesis();
@@ -44,6 +46,7 @@ namespace NMagickWand.Tests
         
         
         [Fact]
+        [Trait("area", "core")]
         public void ReadImageFromFile()
         {
             MagickWandApi.MagickWandGenesis();
@@ -58,6 +61,7 @@ namespace NMagickWand.Tests
         
         
         [Fact]
+        [Trait("area", "core")]
         public void GetImageDimensions()
         {
             var wand = TestHelper.StartTestWithImage();
@@ -70,6 +74,7 @@ namespace NMagickWand.Tests
         
         
         [Fact]
+        [Trait("area", "core")]
         public void SaveImageToFile()
         {
             var wand = TestHelper.StartTestWithImage();
@@ -87,6 +92,7 @@ namespace NMagickWand.Tests
         
         
         [Fact]
+        [Trait("area", "core")]
         public void ResizeImage()
         {
             var wand = TestHelper.StartTestWithImage();
@@ -123,6 +129,7 @@ namespace NMagickWand.Tests
         
         
         [Fact]
+        [Trait("area", "core")]
         public void GetPixelColor()
         {
             var wand = TestHelper.StartTestWithImage();
@@ -135,11 +142,11 @@ namespace NMagickWand.Tests
             
             Assert.True(res == MagickBooleanType.True, "Did not get pixel info");
             
-            var color = MagickWandApi.GetMagickString(MagickWandApi.PixelGetColorAsString(pixelWand));
+            var color = MagickHelper.GetMagickString(MagickWandApi.PixelGetColorAsString(pixelWand));
             
             Assert.True(!string.IsNullOrEmpty(color));
             
-            color = MagickWandApi.GetMagickString(MagickWandApi.PixelGetColorAsNormalizedString(pixelWand));
+            color = MagickHelper.GetMagickString(MagickWandApi.PixelGetColorAsNormalizedString(pixelWand));
 
             Assert.True(!string.IsNullOrEmpty(color));
 
@@ -148,6 +155,7 @@ namespace NMagickWand.Tests
         
         
         [Fact]
+        [Trait("area", "core")]
         public void GetExifInfo()
         {
             UIntPtr count;
