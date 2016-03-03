@@ -10,6 +10,9 @@ namespace NMagickWand
     public class MagickWand
             : IDisposable
     {
+        long _memPressure;
+
+
         internal IntPtr Wand { get; set; }
 
 
@@ -736,6 +739,17 @@ namespace NMagickWand
         internal MagickWand(IntPtr wand)
         {
             Wand = wand;
+            AdjustMemoryPressure();
+        }
+
+
+        internal void AdjustMemoryPressure()
+        {
+            if(_memPressure == 0)
+            {
+                _memPressure = ImageLength;
+                GC.AddMemoryPressure(_memPressure);
+            }
         }
 
 
@@ -1839,6 +1853,8 @@ namespace NMagickWand
             }
 
             Check(MagickWandApi.MagickReadImage(Wand, imagePath));
+
+            AdjustMemoryPressure();
         }
 
 
@@ -2473,6 +2489,11 @@ namespace NMagickWand
                 MagickWandApi.DestroyMagickWand(Wand);
 
                 Wand = IntPtr.Zero;
+
+                if(_memPressure > 0)
+                {
+                    GC.RemoveMemoryPressure(_memPressure);
+                }
             }
         }
     }
