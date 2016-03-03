@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 
 
 namespace NMagickWand
@@ -2392,6 +2391,12 @@ namespace NMagickWand
             if(string.IsNullOrEmpty(imagePath))
             {
                 throw new ArgumentException("Please specify a valid path for the image to write.", nameof(imagePath));
+            }
+
+            var dir = Path.GetDirectoryName(imagePath);
+            if(!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
             }
 
             if(!overwrite && File.Exists(imagePath))
