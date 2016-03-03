@@ -725,6 +725,14 @@ namespace NMagickWand
         }
 
 
+        public MagickWand(string filename)
+        {
+            Wand = MagickWandApi.NewMagickWand();
+
+            this.ReadImage(filename);
+        }
+
+
         internal MagickWand(IntPtr wand)
         {
             Wand = wand;
@@ -1907,7 +1915,7 @@ namespace NMagickWand
         }
 
 
-        public void ScaleImage(uint newHeight, uint newWidth)
+        public void ScaleImage(uint newWidth, uint newHeight)
         {
             Check(MagickWandApi.MagickScaleImage(Wand, (UIntPtr)newWidth, (UIntPtr)newHeight));
         }
@@ -2387,7 +2395,7 @@ namespace NMagickWand
         }
 
 
-        public void GetLargestDimensionsKeepingAspectRatio(uint maxHeight, uint maxWidth, out uint scaledHeight, out uint scaledWidth)
+        public void GetLargestDimensionsKeepingAspectRatio(uint maxWidth, uint maxHeight, out uint scaledWidth, out uint scaledHeight)
         {
             double origRatio = (double) ImageHeight / (double) ImageWidth;
             double requestedRatio = (double) maxHeight / (double) maxWidth;
