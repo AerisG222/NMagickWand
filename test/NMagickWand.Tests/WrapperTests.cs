@@ -67,6 +67,40 @@ namespace NMagickWand.Tests
 
         [Fact]
         [Trait("area", "wrap")]
+        public void TestNightOptimizations()
+        {
+            MagickWandEnvironment.Genesis();
+            
+            using(var mw = new MagickWand("nighttest.jpg"))
+            {
+                using(var mw2 = mw.Clone())
+                {
+                    mw2.AutoGammaImage();
+                    Write(mw2, "night_AutoGammaImage.jpg");
+                }
+                using(var mw2 = mw.Clone())
+                {
+                    mw2.AutoLevelImage();
+                    Write(mw2, "night_AutoLevelImage.jpg");
+                }
+                using(var mw2 = mw.Clone())
+                {
+                    mw2.LinearStretchImage(2, 98);
+                    Write(mw2, "night_LinearStretchImage.jpg");
+                }
+                using(var mw2 = mw.Clone())
+                {
+                    mw2.NormalizeImage();
+                    Write(mw2, "night_NormalizeImage.jpg");
+                }
+            }
+            
+            MagickWandEnvironment.Terminus();
+        }
+        
+        
+        [Fact]
+        [Trait("area", "wrap")]
         public void TestBasicWandMethods()
         {
             MagickWandEnvironment.Genesis();
@@ -382,7 +416,7 @@ namespace NMagickWand.Tests
                 }
                 using(var mw2 = mw.Clone())
                 {
-                    mw2.SepiaToneImage(4);
+                    mw2.SepiaToneImage(1);
                     Write(mw2, "SepiaToneImage.jpg");
                 }
                 using(var mw2 = mw.Clone())
