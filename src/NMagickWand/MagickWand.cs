@@ -2394,12 +2394,12 @@ namespace NMagickWand
             }
 
             var dir = Path.GetDirectoryName(imagePath);
-            if(!Directory.Exists(dir))
+            
+            if(!string.IsNullOrWhiteSpace(dir) && !Directory.Exists(dir))
             {
                 Directory.CreateDirectory(dir);
             }
-
-            if(!overwrite && File.Exists(imagePath))
+            else if(!overwrite && File.Exists(imagePath))
             {
                 throw new MagickWandException($"An image already exists at the specified path: {imagePath}.");
             }

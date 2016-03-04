@@ -8,15 +8,40 @@
 A .Net library to expose the MagickWand API from ImageMagick.
 
 ## Motivation
-I am trying to move my personal projects to .Net Core, and the 
+I am trying to move my personal projects to .Net Core, and the
 graphics support is not there right now.  While there are lots
-of conversations happening about how to address this, I have 
+of conversations happening about how to address this, I have
 not found working code that looks particularly compelling.
 
-## Using
+## Using - Wrapped
+```csharp
+using NMagickWand;
+
+namespace Test
+{
+    public class WrapperExample
+    {
+        public void MakeThumbnail()
+        {
+            MagickWandEnvironment.Genesis();
+
+            using(var mw = new MagickWand("test.jpg"))
+            {
+                mw.ScaleImage(120, 120);
+                mw.WriteImage("test2.jpg");
+            }
+
+            MagickWandEnvironment.Terminus();
+        }
+    }
+}
+```
+
+## Using - Unwrapped
 - Install ImageMagick (currently targets v6)
 - Add a reference to NMagickWand in your project.json
 - Bring down the packages for your project via `dnu restore`
+
 
 ```csharp
 using NMagickWand;
@@ -28,12 +53,12 @@ namespace Test
         public void MakeThumbnail(string srcFilename, string destFilename)
         {
             MagickWandApi.MagickWandGenesis();
-            
+
             var wand = MagickWandApi.NewMagickWand();
             MagickWandApi.MagickReadImage(wand, srcFilename);
             MagickWandApi.MagickScaleImage(wand, (UIntPtr)120, (UIntPtr)120);
             MagickWandApi.MagickWriteImage(wand, destFilename);
-            
+
             MagickWandApi.MagickWandTerminus();
         }
     }
@@ -43,11 +68,11 @@ namespace Test
 - View the tests for more examples
 
 ## Developing
-This library was built by starting with scripting out the 
-API calls, and then filling in types where needed (mostly enums).  
+This library was built by starting with scripting out the
+API calls, and then filling in types where needed (mostly enums).
 The first step of the process is to run `tools/genapi` - this
-currently runs in bash with awk.  While I've tested this only 
-on Linux, I hope it would run pretty cleanly elsewhere. 
+currently runs in bash with awk.  While I've tested this only
+on Linux, I hope it would run pretty cleanly elsewhere.
 
 This tool will overwrite the src/NMagickWand/MagickWandApi_.cs file
 based on how it parses the header files that come with the development
@@ -65,15 +90,10 @@ issues to this project on the github repo.
 
 ## Todo
 I hope to make many improvements to the library as time permits.
-- Improve API generator to get nice parameter names
-- Add tests
-- Create a slim wrapper to make it feel like .net and make it much more approachable
-- Consider how to deal with versioning (v7 is in dev)
+- how to read/write images to streams
 - Investigate options to bundle a statically compiled version of the library
   to simplify steps needed to use this.
-- Consider including GraphicsMagick, which might offer different
-  benefits and performance characteristics 
-  
+
 ## License
 NMagickWand is licensed under the MIT license.  See LICENSE.md for more
 information.
