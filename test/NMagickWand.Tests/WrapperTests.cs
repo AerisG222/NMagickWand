@@ -416,7 +416,7 @@ namespace NMagickWand.Tests
                 }
                 using(var mw2 = mw.Clone())
                 {
-                    mw2.SepiaToneImage(1);
+                    mw2.SepiaToneImage(52428);
                     Write(mw2, "SepiaToneImage.jpg");
                 }
                 using(var mw2 = mw.Clone())
