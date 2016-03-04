@@ -1,3 +1,9 @@
+#0.3.1 (03/03/2016)
+- ensure all wrapper methods expect width then height in that order
+- add convenience overload of MagickWand constructor to accept an image file to read
+- wrapper now adds memory pressure for wrapper when reading or cloning image
+- more wrapper tests
+
 #0.3.0 (03/01/2016)
 - initial attempt to provide friendly wrappers
 
