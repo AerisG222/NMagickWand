@@ -78,7 +78,7 @@ out 'namespace NMagickWand';
 out '{';
 out '    public static partial class MagickWandApi';
 out '    {';
-out '        const string LIB = "libMagickWand";';
+out '        const string LIB = "MagickWand-6.Q16";';
 out ''
 
 process;
