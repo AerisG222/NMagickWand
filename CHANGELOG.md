@@ -1,3 +1,6 @@
+#0.3.2 (03/04/2016)
+- update the dllimport name to align with system library name.  previously, this used a dll map in my mono config i had forgotten about
+
 #0.3.1 (03/03/2016)
 - ensure all wrapper methods expect width then height in that order
 - add convenience overload of MagickWand constructor to accept an image file to read

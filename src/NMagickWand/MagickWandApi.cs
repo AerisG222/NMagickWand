@@ -1,8 +1,8 @@
 // -------------------------------------------------------------------
-// generated from system: Linux 4.4.2-301.fc23.x86_64 #1 SMP Tue Feb 23 19:00:38 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux
+// generated from system: Linux 4.4.3-300.fc23.x86_64 #1 SMP Fri Feb 26 18:45:40 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux
 // generated from library: /lib64/libMagickWand-6.Q16.so
 // generated from include: /usr/include/ImageMagick-6/wand/MagickWand.h
-// generated on: Tue Mar  1 03:10:46 EST 2016
+// generated on: Fri Mar  4 21:00:55 EST 2016
 // -------------------------------------------------------------------
 using System;
 using System.Runtime.InteropServices;
@@ -12,7 +12,7 @@ namespace NMagickWand
 {
     public static partial class MagickWandApi
     {
-        const string LIB = "libMagickWand";
+        const string LIB = "MagickWand-6.Q16";
 
         // -------------------------------------------------------------------
         // MagickWand.h
