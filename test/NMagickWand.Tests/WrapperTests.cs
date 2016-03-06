@@ -99,7 +99,7 @@ namespace NMagickWand.Tests
         }
         
         
-        [Fact]
+        [Fact(Skip="temp")]
         [Trait("area", "wrap")]
         public void TestBasicWandMethods()
         {
@@ -506,6 +506,40 @@ namespace NMagickWand.Tests
             MagickWandEnvironment.Terminus();
         }
 
+
+        [Fact]
+        [Trait("area", "wrap")]
+        public void StreamTest()
+        {
+            MagickWandEnvironment.Genesis();
+            
+            using(var wand = new MagickWand(TestHelper.TEST_FILE))
+            using(var ms = new MemoryStream())
+            {
+                wand.WriteImage(ms);
+                
+                var streamfile = "streamtest.jpg";
+                
+                using(var fs = new FileStream(streamfile, FileMode.CreateNew))
+                {
+                    ms.CopyTo(fs);
+                    fs.Flush();
+                }
+                
+                Assert.True(File.Exists(streamfile));
+                
+                using(var newWand = new MagickWand(streamfile))
+                {
+                    Assert.True(wand.ImageHeight == newWand.ImageHeight);
+                    Assert.True(wand.ImageWidth == newWand.ImageWidth);
+                }
+                
+                File.Delete(streamfile);
+            }
+            
+            MagickWandEnvironment.Terminus();
+        }
+        
 
         void Write(MagickWand wand, string file)
         {
