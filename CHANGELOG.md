@@ -1,3 +1,6 @@
+#0.3.3 (03/06/2016)
+- support writing to streams
+
 #0.3.2 (03/04/2016)
 - update the dllimport name to align with system library name.  previously, this used a dll map in my mono config i had forgotten about
 
