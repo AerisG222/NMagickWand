@@ -90,7 +90,6 @@ issues to this project on the github repo.
 
 ## Todo
 I hope to make many improvements to the library as time permits.
-- how to read/write images to streams
 - update target frameworks for .net core
 - Investigate options to bundle a statically compiled version of the library
   to simplify steps needed to use this.
