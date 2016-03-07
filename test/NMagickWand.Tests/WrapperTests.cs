@@ -573,6 +573,22 @@ namespace NMagickWand.Tests
             MagickWandEnvironment.Terminus();
         }
         
+        
+        [Fact]
+        [Trait("area", "wrap")]
+        public void PixelHtmlColor()
+        {
+            MagickWandEnvironment.Genesis();
+            
+            using(var wand = new MagickWand(TestHelper.TEST_FILE))
+            using(var pw = wand.GetImagePixelColor(100, 100))
+            {
+                Assert.True(string.Equals(pw.HtmlColor, "#5C3A15", StringComparison.OrdinalIgnoreCase));
+            }
+            
+            MagickWandEnvironment.Terminus();
+        }
+        
 
         void Write(MagickWand wand, string file)
         {

@@ -25,6 +25,15 @@ namespace NMagickWand
         }
 
 
+        public string AlphaHtml
+        {
+            get
+            {
+                return ToHtml(Alpha);
+            }
+        }
+        
+
         public float AlphaQuantum
         {
             get
@@ -77,6 +86,15 @@ namespace NMagickWand
         }
 
 
+        public string BlueHtml
+        {
+            get
+            {
+                return ToHtml(Blue);
+            }
+        }
+        
+        
         public float BlueQuantum
         {
             get
@@ -108,6 +126,15 @@ namespace NMagickWand
             get
             {
                 return MagickHelper.GetMagickString(MagickWandApi.PixelGetColorAsNormalizedString(Wand));
+            }
+        }
+        
+        
+        public string HtmlColor
+        {
+            get
+            {
+                return $"#{RedHtml}{GreenHtml}{BlueHtml}";
             }
         }
 
@@ -176,6 +203,15 @@ namespace NMagickWand
             }
         }
 
+
+        public string GreenHtml
+        {
+            get
+            {
+                return ToHtml(Green);
+            }
+        }
+        
 
         public float GreenQuantum
         {
@@ -273,6 +309,15 @@ namespace NMagickWand
             set
             {
                 MagickWandApi.PixelSetRed(Wand, value);
+            }
+        }
+        
+        
+        public string RedHtml
+        {
+            get
+            {
+                return ToHtml(Red);
             }
         }
 
@@ -412,6 +457,12 @@ namespace NMagickWand
         }
 
 
+        string ToHtml(double normalizedValue)
+        {
+            return ((int)(normalizedValue * 255)).ToString("X2");
+        }
+        
+        
         void Check(MagickBooleanType result)
         {
             if(result == MagickBooleanType.False)
