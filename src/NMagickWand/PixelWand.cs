@@ -8,6 +8,7 @@ namespace NMagickWand
     public class PixelWand
         : IDisposable
     {
+        internal bool FreeOnDispose { get; set; }
         internal IntPtr Wand { get; set; }
 
 
@@ -318,14 +319,23 @@ namespace NMagickWand
         public PixelWand()
         {
             Wand = MagickWandApi.NewPixelWand();
+            FreeOnDispose = true;
         }
 
 
         internal PixelWand(IntPtr pixelWand)
+            : this(pixelWand, true)
         {
-            Wand = pixelWand;
+            
         }
 
+
+        internal PixelWand(IntPtr pixelWand, bool freeOnDispose)
+        {
+            Wand = pixelWand;
+            FreeOnDispose = freeOnDispose;
+        }
+        
 
         public void Clear()
         {
@@ -343,9 +353,8 @@ namespace NMagickWand
         {
             var wandArray = wands.Select(x => x.Wand).ToArray();
             var arr = MagickWandApi.ClonePixelWands(wandArray[0], (UIntPtr)wandArray.Length);
-            var result = MagickHelper.GetMagickIntPtrArray(arr, (UIntPtr)wands.Count);
-
-            return result.Select(x => new PixelWand(x)).ToList();
+            
+            return MagickHelper.GetMagickPixelWandList(arr, (UIntPtr)wands.Count);
         }
 
 
@@ -450,7 +459,7 @@ namespace NMagickWand
             }
 
             // free native objects
-            if(Wand != IntPtr.Zero)
+            if(Wand != IntPtr.Zero && FreeOnDispose)
             {
                 MagickWandApi.DestroyPixelWand(Wand);
 

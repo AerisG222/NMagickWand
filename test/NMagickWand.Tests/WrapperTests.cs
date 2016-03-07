@@ -540,6 +540,39 @@ namespace NMagickWand.Tests
             MagickWandEnvironment.Terminus();
         }
         
+        
+        [Fact]
+        [Trait("area", "wrap")]
+        public void PixelIteratorTest()
+        {
+            MagickWandEnvironment.Genesis();
+            
+            using(var wand = new MagickWand(TestHelper.TEST_FILE))
+            using(var pit = new PixelIterator(wand))
+            {
+                var yCount = 0;
+                string[,] imgColors = new string[wand.ImageWidth, wand.ImageHeight];
+                
+                for(int y = 0; y < wand.ImageHeight; y++)
+		        {
+                    var list = pit.GetNextIteratorRow();
+
+                    Assert.True(list.Count == wand.ImageWidth, "we should get the same number of pixels as the image width");
+                    
+                    for(int x = 0; x < list.Count; x++)
+                    {
+                        imgColors[x,y] = list[x].Color;
+                    }
+
+                    yCount++;
+                }
+                
+                Assert.True(wand.ImageHeight == yCount, "we should have iterated over all rows in the image successfully");
+            }
+            
+            MagickWandEnvironment.Terminus();
+        }
+        
 
         void Write(MagickWand wand, string file)
         {

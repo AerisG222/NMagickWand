@@ -42,7 +42,7 @@ namespace NMagickWand
 
         public static IReadOnlyList<string> GetMagickStringList(IntPtr arrayPtr, UIntPtr count)
         {
-            var ptrs = GetMagickIntPtrArray(arrayPtr, count);
+            var ptrs = GetMagickIntPtrArray(arrayPtr, count, true);
 
             return ptrs.Select(x => GetMagickString(x)).ToList();
         }
@@ -58,9 +58,9 @@ namespace NMagickWand
 
         public static IReadOnlyList<PixelWand> GetMagickPixelWandList(IntPtr arrayPtr, UIntPtr count)
         {
-            var result = GetMagickIntPtrArray(arrayPtr, count);
+            var result = GetMagickIntPtrArray(arrayPtr, count, false);
 
-            return result.Select(x => new PixelWand(x)).ToList();
+            return result.Select(x => new PixelWand(x, false)).ToList();
         }
 
 
@@ -80,7 +80,7 @@ namespace NMagickWand
         }
 
 
-        public static IntPtr[] GetMagickIntPtrArray(IntPtr arrayPtr, UIntPtr count)
+        public static IntPtr[] GetMagickIntPtrArray(IntPtr arrayPtr, UIntPtr count, bool free)
         {
             if(arrayPtr == IntPtr.Zero || count == UIntPtr.Zero)
             {
@@ -90,8 +90,11 @@ namespace NMagickWand
             IntPtr[] result = new IntPtr[(int)count];
             Marshal.Copy(arrayPtr, result, 0, (int)count);
 
-            MagickWandApi.MagickRelinquishMemory(arrayPtr);
-
+            if(free)
+            {
+                MagickWandApi.MagickRelinquishMemory(arrayPtr);
+            }
+            
             return result;
         }
 
