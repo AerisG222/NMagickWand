@@ -1,3 +1,6 @@
+#0.3.5 (03/07/2016)
+- add properties on pixelwand to make it easy to get html color values
+
 #0.3.4 (03/07/2016)
 - fix issue when iterating over pixels
 
