@@ -1,3 +1,6 @@
+#0.3.4 (03/07/2016)
+- fix issue when iterating over pixels
+
 #0.3.3 (03/06/2016)
 - support writing to streams
 
