@@ -42,6 +42,35 @@ namespace NMagickWand.Tests
 
         [Fact]
         [Trait("area", "wrap")]
+        public void Resize()
+        {
+            var file = "test3.jpg";
+
+            MagickWandEnvironment.Genesis();
+
+            using(var mw = new MagickWand())
+            {
+                mw.ReadImage("test.jpg");
+                mw.ResizeImage(120, 100, FilterTypes.LanczosFilter, 1);
+                mw.WriteImage(file, true);
+
+                Assert.True(File.Exists(file), "scaled image not created");
+            }
+
+            using(var mw = new MagickWand(file))
+            {
+                Assert.True(mw.ImageWidth == 120, "width does not match the expected size");
+                Assert.True(mw.ImageHeight == 100, "height does not match the expected size");
+            }
+
+            File.Delete(file);
+
+            MagickWandEnvironment.Terminus();
+        }
+        
+        
+        [Fact]
+        [Trait("area", "wrap")]
         public void TestWrapperAndStringQueryFuncs()
         {
             MagickWandEnvironment.Genesis();
