@@ -7,10 +7,17 @@
     "description": "Exposing the power of ImageMagick to .Net",
     "tags": [ "graphics", "image", "ImageMagick", "MagickWand" ],
     "version": "0.3.5",
-    "dependencies": {
-
-    },
     "frameworks": {
-        "net451": { }
+        "net451": {
+            "frameworkAssemblies": {
+                "System": "",
+                "System.Runtime.InteropServices": ""
+            }
+         },
+        "netstandard15": { 
+            "dependencies": {
+                "NetStandard.Library": "1.5.0-rc3-*" 
+            }
+        }
     }
 }
