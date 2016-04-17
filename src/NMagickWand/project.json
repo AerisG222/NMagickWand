@@ -9,11 +9,13 @@
     "version": "0.3.5",
     "frameworks": {
         "net451": {
-            "frameworkAssemblies": {
-                "System": "",
-                "System.Runtime.InteropServices": ""
+            "dependencies": {
+                "Microsoft.TargetingPack.NETFramework.v4.5.1": {
+                    "version": "1.0.1-*",
+                    "type": "build"
+                }
             }
-         },
+        },
         "netstandard15": { 
             "dependencies": {
                 "NetStandard.Library": "1.5.0-rc3-*" 
