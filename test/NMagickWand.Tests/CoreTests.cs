@@ -183,5 +183,41 @@ namespace NMagickWand.Tests
             // free the array
             MagickWandApi.MagickRelinquishMemory(strArrayPtr);
         }
+        
+        
+        [Fact]
+        [TraitAttribute("area", "core")]
+        public void GetImageMagickInfo()
+        {
+            MagickWandEnvironment.Genesis();
+            
+            uint depth;
+            
+            var d = MagickWandEnvironment.GetQuantumDepth(out depth);
+            
+            Console.WriteLine("depth: " + depth.ToString());
+            Assert.True(!string.IsNullOrWhiteSpace(d), "Quantum Depth should be defined");
+            
+            var r = MagickWandEnvironment.GetQuantumRange(out depth);
+            
+            Console.WriteLine("range: " + r);
+            Assert.True(!string.IsNullOrWhiteSpace(r), "Quantum Range should be defined");
+            
+            Console.WriteLine("copyright: " + MagickWandEnvironment.Copyright);
+            Assert.True(!string.IsNullOrWhiteSpace(MagickWandEnvironment.Copyright));
+            
+            Console.WriteLine("homeurl: " + MagickWandEnvironment.HomeUrl);
+            Assert.True(!string.IsNullOrWhiteSpace(MagickWandEnvironment.HomeUrl));
+            
+            Console.WriteLine("package name: " + MagickWandEnvironment.PackageName);
+            Assert.True(!string.IsNullOrWhiteSpace(MagickWandEnvironment.PackageName));
+            
+            uint ver;
+            var verStr = MagickWandEnvironment.GetVersion(out ver);
+            Console.WriteLine("version: " + verStr + " : " + ver.ToString());
+            Assert.True(!string.IsNullOrWhiteSpace(verStr));
+            
+            MagickWandEnvironment.Terminus();
+        }
     }
 }

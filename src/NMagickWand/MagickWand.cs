@@ -1468,7 +1468,7 @@ namespace NMagickWand
             UIntPtr length = UIntPtr.Zero;
             var ptr = MagickWandApi.MagickGetImageProfile(Wand, profileName, out length);
 
-            return MagickHelper.GetMagickString(ptr, length);
+            return MagickHelper.GetMagickConstString(ptr, length);
         }
 
 

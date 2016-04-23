@@ -10,7 +10,7 @@ namespace NMagickWand
         {
             get
             {
-                return MagickHelper.GetMagickString(MagickWandApi.MagickGetCopyright());
+                return MagickHelper.GetMagickConstString(MagickWandApi.MagickGetCopyright());
             }
         }
 
@@ -19,7 +19,7 @@ namespace NMagickWand
         {
             get
             {
-                return MagickHelper.GetMagickString(MagickWandApi.MagickGetHomeURL());
+                return MagickHelper.GetMagickConstString(MagickWandApi.MagickGetHomeURL());
             }
         }
 
@@ -37,7 +37,7 @@ namespace NMagickWand
         {
             get
             {
-                return MagickHelper.GetMagickString(MagickWandApi.MagickGetPackageName());
+                return MagickHelper.GetMagickConstString(MagickWandApi.MagickGetPackageName());
             }
         }
 
@@ -46,7 +46,7 @@ namespace NMagickWand
         {
             get
             {
-                return MagickHelper.GetMagickString(MagickWandApi.MagickGetReleaseDate());
+                return MagickHelper.GetMagickConstString(MagickWandApi.MagickGetReleaseDate());
             }
         }
 
@@ -71,7 +71,7 @@ namespace NMagickWand
 
             depth = (uint)d;
 
-            return MagickHelper.GetMagickString(ptr);
+            return MagickHelper.GetMagickConstString(ptr);
         }
 
 
@@ -83,7 +83,7 @@ namespace NMagickWand
 
             depth = (uint)d;
 
-            return MagickHelper.GetMagickString(ptr);
+            return MagickHelper.GetMagickConstString(ptr);
         }
 
 
@@ -107,7 +107,7 @@ namespace NMagickWand
 
             version = (uint)v;
 
-            return MagickHelper.GetMagickString(ptr);
+            return MagickHelper.GetMagickConstString(ptr);
         }
 
 

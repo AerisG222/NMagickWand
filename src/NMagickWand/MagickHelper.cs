@@ -29,7 +29,18 @@ namespace NMagickWand
         }
 
 
-        public static string GetMagickString(IntPtr ptr, UIntPtr length)
+        public static string GetMagickConstString(IntPtr ptr)
+        {
+            if(ptr == IntPtr.Zero)
+            {
+                return null;
+            }
+
+            return Marshal.PtrToStringAnsi(ptr);
+        }
+        
+        
+        public static string GetMagickConstString(IntPtr ptr, UIntPtr length)
         {
             if(ptr == IntPtr.Zero || length == UIntPtr.Zero)
             {
