@@ -1,6 +1,6 @@
 {
     "dependencies": {
-        "NMagickWand": "0.1.0",
+        "NMagickWand": "0.3.5",
         "xunit": "2.1.0-*",
         "xunit.runner.dnx": "2.1.0-*"
     },
