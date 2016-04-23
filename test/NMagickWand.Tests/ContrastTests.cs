@@ -9,7 +9,7 @@ namespace NMagickWand.Tests
     public class ContrastTests
     {
         const bool KEEP_FILES = true;
-        static string[] _files = { "test.jpg", "nighttest.jpg", "test2_night.jpg" };
+        static readonly string[] _files = Directory.GetFiles("contrast_tests");
         
         
         [Fact()]
@@ -284,13 +284,17 @@ namespace NMagickWand.Tests
         {
             MagickWandEnvironment.Genesis();
             
+            PrintStatsHeader();
+            
             foreach(var file in _files)
             {
                 using(var wand = new MagickWand(file))
                 {
+                    PrintStats(file, wand);
+                    
                     //wand.AutoLevelImage();  // rough brightness
                     wand.SigmoidalContrastImage(true, 2, 0);  // smooth brightness/contrast
-                    wand.ModulateImage(100, 120, 300);  // bump saturation
+                    //wand.ModulateImage(100, 120, 300);  // bump saturation
                     wand.UnsharpMaskImage(0, 0.7, 0.7, 0.008);  // sharpen
                     
                     WriteImage("composed", file, new string[] { }, wand);
@@ -301,9 +305,26 @@ namespace NMagickWand.Tests
         }
         
         
+        void PrintStatsHeader()
+        {
+            Console.WriteLine("File\tMean\tStdDev\tKurtosis\tSkewness");
+        }
+        
+        
+        void PrintStats(string file, MagickWand wand)
+        {
+            double mean, stddev, kurtosis, skewness;
+            
+            wand.GetImageChannelMean(ChannelType.AllChannels, out mean, out stddev);
+            wand.GetImageChannelKurtosis(ChannelType.AllChannels, out kurtosis, out skewness);
+            
+            Console.WriteLine($"{Path.GetFileName(file)}\t{mean}\t{stddev}\t{kurtosis}\t{skewness}");
+        }
+        
+        
         void WriteImage(string test, string filename, string[] args, MagickWand wand)
         {
-            var dir = Path.Combine("contrast", test);
+            var dir = Path.Combine("contrast_tests", test);
             var file = $"{Path.GetFileNameWithoutExtension(filename)}_{string.Join("_", args)}{Path.GetExtension(filename)}";
             var fullPath = Path.Combine(dir, file);
             
