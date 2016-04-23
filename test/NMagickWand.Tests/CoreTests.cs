@@ -191,17 +191,13 @@ namespace NMagickWand.Tests
         {
             MagickWandEnvironment.Genesis();
             
-            uint depth;
+            Console.WriteLine("depth: " + MagickWandEnvironment.QuantumDepth.ToString());
+            Assert.True(MagickWandEnvironment.QuantumDepth > 0, "Quantum Depth should be defined");
+            Assert.True(!string.IsNullOrWhiteSpace(MagickWandEnvironment.QuantumDepthDescription), "Quantum Depth should be defined");
             
-            var d = MagickWandEnvironment.GetQuantumDepth(out depth);
-            
-            Console.WriteLine("depth: " + depth.ToString());
-            Assert.True(!string.IsNullOrWhiteSpace(d), "Quantum Depth should be defined");
-            
-            var r = MagickWandEnvironment.GetQuantumRange(out depth);
-            
-            Console.WriteLine("range: " + r);
-            Assert.True(!string.IsNullOrWhiteSpace(r), "Quantum Range should be defined");
+            Console.WriteLine("range: " + MagickWandEnvironment.QuantumRange.ToString());
+            Assert.True(MagickWandEnvironment.QuantumRange > 0, "Quantum Range should be defined");
+            Assert.True(!string.IsNullOrWhiteSpace(MagickWandEnvironment.QuantumRangeDescription), "Quantum Range should be defined");
             
             Console.WriteLine("copyright: " + MagickWandEnvironment.Copyright);
             Assert.True(!string.IsNullOrWhiteSpace(MagickWandEnvironment.Copyright));
@@ -212,10 +208,9 @@ namespace NMagickWand.Tests
             Console.WriteLine("package name: " + MagickWandEnvironment.PackageName);
             Assert.True(!string.IsNullOrWhiteSpace(MagickWandEnvironment.PackageName));
             
-            uint ver;
-            var verStr = MagickWandEnvironment.GetVersion(out ver);
-            Console.WriteLine("version: " + verStr + " : " + ver.ToString());
-            Assert.True(!string.IsNullOrWhiteSpace(verStr));
+            Console.WriteLine("version: " + MagickWandEnvironment.Version.ToString());
+            Assert.True(MagickWandEnvironment.Version > 0);
+            Assert.True(!string.IsNullOrWhiteSpace(MagickWandEnvironment.VersionDescription));
             
             MagickWandEnvironment.Terminus();
         }

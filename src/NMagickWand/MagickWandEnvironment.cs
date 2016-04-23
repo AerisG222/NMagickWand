@@ -41,12 +41,84 @@ namespace NMagickWand
             }
         }
 
+        
+        public static uint QuantumDepth
+        {
+            get
+            {
+                uint depth;
+                
+                GetQuantumDepth(out depth);
+                
+                return depth;
+            }
+        }
+        
+        
+        public static string QuantumDepthDescription
+        {
+            get
+            {
+                uint depth;
+                
+                return GetQuantumDepth(out depth);
+            }
+        }
+        
+        
+        public static uint QuantumRange
+        {
+            get
+            {
+                uint range;
+                
+                GetQuantumDepth(out range);
+                
+                return range;
+            }
+        }
+        
+        
+        public static string QuantumRangeDescription
+        {
+            get
+            {
+                uint range;
+                
+                return GetQuantumDepth(out range);
+            }
+        }
+        
 
         public static string ReleaseDate
         {
             get
             {
                 return MagickHelper.GetMagickConstString(MagickWandApi.MagickGetReleaseDate());
+            }
+        }
+        
+        
+        public static uint Version
+        {
+            get
+            {
+                uint version;
+                
+                GetVersion(out version);
+                
+                return version;
+            }
+        }
+        
+        
+        public static string VersionDescription
+        {
+            get
+            {
+                uint version;
+                
+                return GetVersion(out version);
             }
         }
 
@@ -63,30 +135,6 @@ namespace NMagickWand
         }
 
 
-        public static string GetQuantumDepth(out uint depth)
-        {
-            UIntPtr d;
-
-            var ptr = MagickWandApi.MagickGetQuantumDepth(out d);
-
-            depth = (uint)d;
-
-            return MagickHelper.GetMagickConstString(ptr);
-        }
-
-
-        public static string GetQuantumRange(out uint depth)
-        {
-            UIntPtr d;
-
-            var ptr = MagickWandApi.MagickGetQuantumRange(out d);
-
-            depth = (uint)d;
-
-            return MagickHelper.GetMagickConstString(ptr);
-        }
-
-
         public static uint GetResource(ResourceType type)
         {
             return (uint) MagickWandApi.MagickGetResource(type);
@@ -96,18 +144,6 @@ namespace NMagickWand
         public static uint GetResourceLimit(ResourceType type)
         {
             return (uint) MagickWandApi.MagickGetResourceLimit(type);
-        }
-
-
-        public static string GetVersion(out uint version)
-        {
-            UIntPtr v;
-
-            var ptr = MagickWandApi.MagickGetVersion(out v);
-
-            version = (uint)v;
-
-            return MagickHelper.GetMagickConstString(ptr);
         }
 
 
@@ -132,6 +168,42 @@ namespace NMagickWand
         public static IReadOnlyCollection<string> QueryFormats(string pattern)
         {
             return MagickHelper.ExecuteMagickQueryStringList(pattern, MagickWandApi.MagickQueryFormats);
+        }
+        
+        
+        static string GetQuantumDepth(out uint depth)
+        {
+            UIntPtr d;
+
+            var ptr = MagickWandApi.MagickGetQuantumDepth(out d);
+
+            depth = (uint)d;
+
+            return MagickHelper.GetMagickConstString(ptr);
+        }
+
+
+        static string GetQuantumRange(out uint depth)
+        {
+            UIntPtr d;
+
+            var ptr = MagickWandApi.MagickGetQuantumRange(out d);
+
+            depth = (uint)d;
+
+            return MagickHelper.GetMagickConstString(ptr);
+        }
+        
+        
+        static string GetVersion(out uint version)
+        {
+            UIntPtr v;
+
+            var ptr = MagickWandApi.MagickGetVersion(out v);
+
+            version = (uint)v;
+
+            return MagickHelper.GetMagickConstString(ptr);
         }
     }
 }
