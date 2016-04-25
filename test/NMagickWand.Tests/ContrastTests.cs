@@ -282,6 +282,9 @@ namespace NMagickWand.Tests
         [Trait("area", "composed")]
         public void ComposedTest()
         {
+            var contrastRatioThreshold = 0.5;
+            var tooContrastyThreshold = 1.9;
+            
             MagickWandEnvironment.Genesis();
             
             PrintStatsHeader();
@@ -290,11 +293,41 @@ namespace NMagickWand.Tests
             {
                 using(var wand = new MagickWand(file))
                 {
+                    double mean, stddev;
+                    
+                    wand.GetImageChannelMean(ChannelType.AllChannels, out mean, out stddev);
+                    
                     PrintStats(file, wand);
                     
-                    //wand.AutoLevelImage();  // rough brightness
-                    wand.SigmoidalContrastImage(true, 2, 0);  // smooth brightness/contrast
-                    //wand.ModulateImage(100, 120, 300);  // bump saturation
+                    wand.AutoLevelImage();
+                    
+                    var contrastRatio = stddev / mean;
+                    var contrastyRatio = stddev / 10000;
+                    
+                    if(contrastRatio < contrastRatioThreshold)
+                    {
+                        var saturationAmount = Convert.ToInt32((contrastRatioThreshold - contrastRatio) * 100) * 4;
+                        
+                        // limit the saturation adjustment to 20%
+                        if(saturationAmount > 20)
+                        {
+                            saturationAmount = 20;
+                        }
+                        
+                        saturationAmount += 100;
+                        
+                        Console.WriteLine("modulating by: " + saturationAmount);
+                        
+                        // 100 = don't adjust brightness
+                        // 300 = don't rotate hue
+                        wand.ModulateImage(100, saturationAmount, 300);
+                    }
+                    else if(contrastyRatio > tooContrastyThreshold)
+                    {
+                        Console.WriteLine("attempting to reduce contrast");
+                        wand.SigmoidalContrastImage(true, 2, 0);  // smooth brightness/contrast
+                    }
+                    
                     wand.UnsharpMaskImage(0, 0.7, 0.7, 0.008);  // sharpen
                     
                     WriteImage("composed", file, new string[] { }, wand);
