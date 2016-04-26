@@ -1,3 +1,8 @@
+#0.3.6 (04/25/2016)
+- correct/improve accessing some properties on MagickWandEnvironment (like QuantumDepth, QuantumRange, Version, etc)
+- reorganize files so it is a bit easier to reason about (moving enums and structs into like namespaces)
+- added tests, and more attempts to find a good approach to preparing images based on characteristics of the images - will see how good this is after testing a larger sample!
+
 #0.3.5 (03/07/2016)
 - add properties on pixelwand to make it easy to get html color values
 
