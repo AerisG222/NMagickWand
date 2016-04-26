@@ -3,6 +3,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using Xunit;
 using NMagickWand;
+using NMagickWand.Enums;
 
 
 namespace NMagickWand.Tests

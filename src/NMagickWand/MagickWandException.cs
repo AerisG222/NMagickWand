@@ -1,4 +1,5 @@
 using System;
+using NMagickWand.Enums;
 
 
 namespace NMagickWand

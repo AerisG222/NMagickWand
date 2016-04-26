@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Security.Cryptography;
 using NMagickWand;
+using NMagickWand.Enums;
 
 
 namespace NMagickWand.Tests

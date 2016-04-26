@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using Xunit;
 using NMagickWand;
+using NMagickWand.Enums;
 
 
 namespace NMagickWand.Tests

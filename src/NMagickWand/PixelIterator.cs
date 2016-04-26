@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using NMagickWand.Enums;
 
 
 namespace NMagickWand

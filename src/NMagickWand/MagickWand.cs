@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using NMagickWand.Enums;
+using NMagickWand.Structs;
 
 
 namespace NMagickWand

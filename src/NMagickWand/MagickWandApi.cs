@@ -1,11 +1,13 @@
 // -------------------------------------------------------------------
-// generated from system: Linux 4.4.3-300.fc23.x86_64 #1 SMP Fri Feb 26 18:45:40 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux
+// generated from system: Linux 4.4.7-300.fc23.x86_64 #1 SMP Wed Apr 13 02:52:52 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux
 // generated from library: /lib64/libMagickWand-6.Q16.so
 // generated from include: /usr/include/ImageMagick-6/wand/MagickWand.h
-// generated on: Fri Mar  4 21:00:55 EST 2016
+// generated on: Mon Apr 25 20:08:44 EDT 2016
 // -------------------------------------------------------------------
 using System;
 using System.Runtime.InteropServices;
+using NMagickWand.Enums;
+using NMagickWand.Structs;
 
 
 namespace NMagickWand

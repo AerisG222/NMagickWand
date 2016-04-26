@@ -72,6 +72,8 @@ out "// generated on: ${DT}";
 out "${BAR}";
 out 'using System;';
 out 'using System.Runtime.InteropServices;';
+out 'using NMagickWand.Enums;';
+out 'using NMagickWand.Structs;';
 out '';
 out '';
 out 'namespace NMagickWand';
