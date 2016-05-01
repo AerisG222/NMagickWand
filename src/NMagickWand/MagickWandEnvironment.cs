@@ -73,7 +73,7 @@ namespace NMagickWand
             {
                 uint range;
                 
-                GetQuantumDepth(out range);
+                GetQuantumRange(out range);
                 
                 return range;
             }
@@ -86,7 +86,7 @@ namespace NMagickWand
             {
                 uint range;
                 
-                return GetQuantumDepth(out range);
+                return GetQuantumRange(out range);
             }
         }
         

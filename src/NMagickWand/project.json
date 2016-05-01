@@ -6,7 +6,7 @@
     "summary": "Exposing the power of ImageMagick to .Net",
     "description": "Exposing the power of ImageMagick to .Net",
     "tags": [ "graphics", "image", "ImageMagick", "MagickWand" ],
-    "version": "0.3.6",
+    "version": "0.3.7",
     "dependencies": {
 
     },
