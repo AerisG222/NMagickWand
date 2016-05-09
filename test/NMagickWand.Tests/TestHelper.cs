@@ -1,7 +1,6 @@
 using System;
 using System.Diagnostics;
 using System.IO;
-using System.Security.Cryptography;
 using NMagickWand;
 using NMagickWand.Enums;
 
@@ -21,24 +20,6 @@ namespace NMagickWand.Tests
             using(var p = Process.Start(psi))
             {
                 return p.WaitForExit(12000);
-            }
-        }
-        
-        
-        public static string ComputeHash(string filename)
-        {
-            using(var stream = new FileStream(filename, FileMode.Open))
-            {
-                return TestHelper.ComputeHash(stream);
-            }
-        }
-        
-        
-        public static string ComputeHash(Stream buffer)
-        {
-            using(var cryptoProvider = new SHA1CryptoServiceProvider())
-            {
-                return BitConverter.ToString(cryptoProvider.ComputeHash(buffer));
             }
         }
         

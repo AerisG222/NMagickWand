@@ -9,7 +9,7 @@ namespace NMagickWand.Tests
 {
     public class WrapperTests
     {
-        const bool KEEP_FILES = true;
+        const bool KEEP_FILES = false;
 
 
         [Fact]
