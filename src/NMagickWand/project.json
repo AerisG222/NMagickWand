@@ -1,16 +1,28 @@
 {
     "title": "NMagickWand",
     "authors": [ "Mike Morano <mmorano@mikeandwan.us>" ],
-    "licenseUrl": "https://github.com/AerisG222/NMagickWand/blob/master/LICENSE.md",
-    "projectUrl": "https://github.com/AerisG222/NMagickWand",
-    "summary": "Exposing the power of ImageMagick to .Net",
     "description": "Exposing the power of ImageMagick to .Net",
-    "tags": [ "graphics", "image", "ImageMagick", "MagickWand" ],
-    "version": "0.3.7",
-    "dependencies": {
-
+    "version": "0.4.0",
+    "packOptions": {
+        "licenseUrl": "https://github.com/AerisG222/NMagickWand/blob/master/LICENSE.md",
+        "projectUrl": "https://github.com/AerisG222/NMagickWand",
+        "summary": "Exposing the power of ImageMagick to .Net",
+        "tags": [ "graphics", "image", "ImageMagick", "MagickWand" ]
+    },
+    "buildOptions": {
+        "debugType": "portable",
+        "warningsAsErrors": false
     },
     "frameworks": {
-        "net451": { }
+        "net451": { },
+        "netstandard15": {
+            "imports": [ 
+                "dotnet55", 
+                "portable-dnxcore50+net45+win8+wp8+wpa81" 
+            ],
+            "dependencies": {
+                "NETStandard.Library": "1.0.0-rc2-*"
+            }
+        }
     }
 }
