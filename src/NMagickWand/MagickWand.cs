@@ -750,7 +750,11 @@ namespace NMagickWand
             if(_memPressure == 0)
             {
                 _memPressure = ImageLength;
-                GC.AddMemoryPressure(_memPressure);
+                
+                if(_memPressure > 0) 
+                {
+                    GC.AddMemoryPressure(_memPressure);
+                }
             }
         }
 
