@@ -1,3 +1,12 @@
+#0.4.1 (05/21/2016)
+- updates to reference rc2 dependencies
+
+#0.4.0 (05/10/2016)
+- first updates to support rc2 / netcore
+
+#0.3.7 (05/01/2016)
+- breakfix
+
 #0.3.6 (04/25/2016)
 - correct/improve accessing some properties on MagickWandEnvironment (like QuantumDepth, QuantumRange, Version, etc)
 - reorganize files so it is a bit easier to reason about (moving enums and structs into like namespaces)
