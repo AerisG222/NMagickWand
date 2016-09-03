@@ -15,11 +15,11 @@ addons:
 matrix:
   include:
     - os: linux
-      dist: trusty # Ubuntu 14.04
+      dist: xenial # Ubuntu 16.02
       sudo: required
       env: CONFIGURATION=Debug FRAMEWORK=netcoreapp1.0
     - os: linux
-      dist: trusty
+      dist: xenial
       sudo: required
       env: CONFIGURATION=Release FRAMEWORK=netcoreapp1.0
 
