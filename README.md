@@ -1,6 +1,6 @@
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/AerisG222/NMagickWand/blob/master/LICENSE.md)
 [![NuGet](https://buildstats.info/nuget/NMagickWand)](https://www.nuget.org/packages/NMagickWand/)
-[![Travis](https://img.shields.io/travis/AerisG222/NMagickWand.svg?maxAge=2592000)](https://travis-ci.org/AerisG222/NMagickWand)
+[![Travis](https://img.shields.io/travis/AerisG222/NMagickWand.svg)](https://travis-ci.org/AerisG222/NMagickWand)
 [![Coverity Scan](https://img.shields.io/coverity/scan/7995.svg)](https://scan.coverity.com/projects/aerisg222-nmagickwand)
 
 # NMagickWand
