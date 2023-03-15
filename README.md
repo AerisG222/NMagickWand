@@ -1,3 +1,17 @@
+NMagickWand is now archived.  There are now much better alternatives for processing images in .Net.  There are 2 great libraries I would point you to for image processing:
+
+## [Magick.NET](https://github.com/dlemstra/Magick.NET)
+
+If you want the best experience to use ImageMagick APIs, Magick.NET is your best option.  This library also
+offers many packages that comes bundled with the necessary ImageMagick libraries itself so setup is quite simple!
+
+## [ImageSharp](https://github.com/SixLabors/ImageSharp)
+
+This is another great image processing library that is fast, powerful, and completely written in .NET!
+
+
+---
+
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/AerisG222/NMagickWand/blob/master/LICENSE.md)
 [![NuGet](https://buildstats.info/nuget/NMagickWand)](https://www.nuget.org/packages/NMagickWand/)
 [![Travis](https://img.shields.io/travis/AerisG222/NMagickWand.svg)](https://travis-ci.org/AerisG222/NMagickWand)
